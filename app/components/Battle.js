@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUserFriends, FaFighterJet, FaTrophy } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 
-function Instructions () {
+function Instructions() {
   return (
     <div className='instructions-container'>
       <h1 className='center-text header-lg'>Instructions</h1>
@@ -29,7 +29,7 @@ function Instructions () {
 }
 
 class PlayerInput extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -39,17 +39,17 @@ class PlayerInput extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
-  handleSubmit (event) {
+  handleSubmit(event) {
     event.preventDefault()
 
     this.props.onSubmit(this.state.username)
   }
-  handleChange (event) {
+  handleChange(event) {
     this.setState({
       username: event.target.value
     })
   }
-  render () {
+  render() {
     return (
       <form className='column player' onSubmit={this.handleSubmit}>
         <label htmlFor='username' className='player-label'>
@@ -84,14 +84,44 @@ PlayerInput.propTypes = {
 }
 
 export default class Battle extends React.Component {
-  render () {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      playerOne: null,
+      playerTwo: null
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleSubmit(id, player) {
+    this.setState({
+      [id]: player
+    })
+  }
+  render() {
+    const { playerOne, playerTwo } = this.state
     return (
       <React.Fragment>
         <Instructions />
-        <PlayerInput
-          label='lable:'
-          onSubmit={value => console.log('value', value)}
-        />
+        <div className='players-container'>
+          <h1 className='center-text header-lg'>Players</h1>
+          <div className='row space-around'>
+            {playerOne === null && (
+              <PlayerInput
+                label='Player One'
+                onSubmit={player => this.handleSubmit('playerOne', player)}
+              />
+            )}
+
+            {playerTwo === null && (
+              <PlayerInput
+                label='Player Two'
+                onSubmit={player => this.handleSubmit('playerTwo', player)}
+              />
+            )}
+          </div>
+        </div>
       </React.Fragment>
     )
   }
