@@ -99,6 +99,7 @@ export default class Popular extends React.Component {
       error: null
     }
     this.updateLanguage = this.updateLanguage.bind(this)
+    this.isLoading = this.isLoading.bind(this)
   }
   componentDidMount () {
     this.updateLanguage(this.state.selectedLanguage)
