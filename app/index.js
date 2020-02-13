@@ -6,7 +6,7 @@ import Popular from './components/Popular'
 import Battle from './components/Battle'
 
 class App extends React.Component {
-  render() {
+  render () {
     return (
       <div className='container'>
         {/* <Popular /> */}
