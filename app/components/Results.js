@@ -1,7 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { battle } from '../utils/api'
 
 export default class Results extends React.Component {
-  render() {
+  componentDidMount () {
+    const { playerOne, playerTwo } = this.props
+
+    battle([playerOne, playerTwo]).then(players => {
+      console.log('data: ', players)
+    })
+  }
+  render () {
     return (
       <div>
         Results
@@ -9,4 +18,9 @@ export default class Results extends React.Component {
       </div>
     )
   }
+}
+
+Results.propTypes = {
+  playerOne: PropTypes.string.isRequired,
+  playerTwo: PropTypes.string.isRequired
 }
