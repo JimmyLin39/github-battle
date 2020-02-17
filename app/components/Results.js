@@ -12,8 +12,10 @@ import {
 import Card from './Card'
 import Loading from './Loading'
 import Tooltip from './Tooltip'
+import queryString from 'query-string'
+import { Link } from 'react-router-dom'
 
-function ProfileList ({ profile }) {
+function ProfileList({ profile }) {
   return (
     <ul className='card-list'>
       <li>
@@ -53,7 +55,7 @@ ProfileList.propTypes = {
 }
 
 export default class Results extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -63,8 +65,10 @@ export default class Results extends React.Component {
       loading: true
     }
   }
-  componentDidMount () {
-    const { playerOne, playerTwo } = this.props
+  componentDidMount() {
+    const { playerOne, playerTwo } = queryString.parse(
+      this.props.location.search
+    )
 
     battle([playerOne, playerTwo])
       .then(players => {
@@ -82,7 +86,7 @@ export default class Results extends React.Component {
         })
       })
   }
-  render () {
+  render() {
     const { winner, loser, error, loading } = this.state
 
     if (loading === true) {
@@ -114,16 +118,14 @@ export default class Results extends React.Component {
             <ProfileList profile={loser.profile} />
           </Card>
         </div>
-        <button onClick={this.props.onReset} className='btn dark-btn btn-space'>
+        <Link to='/battle' className='btn dark-btn btn-space'>
           Reset
-        </button>
+        </Link>
       </React.Fragment>
     )
   }
 }
 
 Results.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired
+  location: PropTypes.object.isRequired
 }
