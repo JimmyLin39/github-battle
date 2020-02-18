@@ -40,14 +40,7 @@ function ReposGrid ({ repos }) {
   return (
     <ul className='grid space-around'>
       {repos.map((repo, index) => {
-        const {
-          name,
-          owner,
-          html_url,
-          stargazers_count,
-          forks,
-          open_issues
-        } = repo
+        const { owner, html_url, stargazers_count, forks, open_issues } = repo
         const { login, avatar_url } = owner
 
         return (
@@ -91,20 +84,15 @@ ReposGrid.propTypes = {
 }
 
 export default class Popular extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      selectedLanguage: 'All',
-      repos: {},
-      error: null
-    }
-    this.updateLanguage = this.updateLanguage.bind(this)
-    this.isLoading = this.isLoading.bind(this)
+  state = {
+    selectedLanguage: 'All',
+    repos: {},
+    error: null
   }
   componentDidMount () {
     this.updateLanguage(this.state.selectedLanguage)
   }
-  updateLanguage (selectedLanguage) {
+  updateLanguage = selectedLanguage => {
     this.setState({
       selectedLanguage,
       error: null
@@ -127,7 +115,7 @@ export default class Popular extends React.Component {
         })
     }
   }
-  isLoading () {
+  isLoading = () => {
     const { selectedLanguage, repos, error } = this.state
     return !repos[selectedLanguage] && error === null
   }

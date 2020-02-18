@@ -6,7 +6,6 @@ import {
   FaBriefcase,
   FaUsers,
   FaUserFriends,
-  FaCode,
   FaUser
 } from 'react-icons/fa'
 import Card from './Card'
@@ -15,7 +14,7 @@ import Tooltip from './Tooltip'
 import queryString from 'query-string'
 import { Link } from 'react-router-dom'
 
-function ProfileList({ profile }) {
+function ProfileList ({ profile }) {
   return (
     <ul className='card-list'>
       <li>
@@ -55,17 +54,13 @@ ProfileList.propTypes = {
 }
 
 export default class Results extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      loading: true
-    }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    loading: true
   }
-  componentDidMount() {
+  componentDidMount () {
     const { playerOne, playerTwo } = queryString.parse(
       this.props.location.search
     )
@@ -86,7 +81,7 @@ export default class Results extends React.Component {
         })
       })
   }
-  render() {
+  render () {
     const { winner, loser, error, loading } = this.state
 
     if (loading === true) {

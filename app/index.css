@@ -199,6 +199,10 @@ li {
   margin-left: 10px;
 }
 
+button {
+  cursor: pointer;
+}
+
 .btn {
   padding: 10px;
   text-decoration: uppercase;

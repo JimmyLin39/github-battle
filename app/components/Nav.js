@@ -6,7 +6,7 @@ const activeStyle = {
   color: 'rgb(187, 46, 31)'
 }
 
-export default function Nav() {
+export default function Nav () {
   return (
     <ThemeConsumer>
       {({ theme, toggleTheme }) => (
@@ -35,7 +35,7 @@ export default function Nav() {
           </ul>
           <button
             style={{ fontSize: 30 }}
-            className='btn-clear'
+            className='btn btn-clear'
             onClick={toggleTheme}
           >
             {theme === 'light' ? '🔦' : '💡'}
