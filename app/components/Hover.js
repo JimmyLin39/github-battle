@@ -25,5 +25,5 @@ export default class Hover extends React.Component {
 }
 
 Hover.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.func.isRequired
 }
