@@ -9,10 +9,10 @@ import PropTypes from 'prop-types'
 import { ThemeConsumer } from '../contexts/theme'
 import { Link } from 'react-router-dom'
 
-function Instructions () {
+function Instructions() {
   return (
     <ThemeConsumer>
-      {({ theme }) => (
+      {theme => (
         <div className='instructions-container'>
           <h1 className='center-text header-lg'>Instructions</h1>
           <ol className='container-sm grid center-text battle-instructions'>
@@ -61,10 +61,10 @@ class PlayerInput extends React.Component {
       username: event.target.value
     })
   }
-  render () {
+  render() {
     return (
       <ThemeConsumer>
-        {({ theme }) => (
+        {theme => (
           <form className='column player' onSubmit={this.handleSubmit}>
             <label htmlFor='username' className='player-label'>
               {this.props.label}
@@ -98,10 +98,10 @@ PlayerInput.propTypes = {
   label: PropTypes.string.isRequired
 }
 
-function PlayerPreview ({ username, onReset, label }) {
+function PlayerPreview({ username, onReset, label }) {
   return (
     <ThemeConsumer>
-      {({ theme }) => (
+      {theme => (
         <div className='column player'>
           <h3 className='player-label'>{label}</h3>
           <div className={`row bg-${theme}`}>
@@ -146,7 +146,7 @@ export default class Battle extends React.Component {
       [id]: null
     })
   }
-  render () {
+  render() {
     const { playerOne, playerTwo } = this.state
     return (
       <React.Fragment>
