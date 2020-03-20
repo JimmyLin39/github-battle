@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { ThemeContext } from '../contexts/theme'
 import { NavLink } from 'react-router-dom'
 
@@ -37,4 +38,8 @@ export default function Nav({ toggleTheme }) {
       </button>
     </nav>
   )
+}
+
+Nav.propTypes = {
+  toggleTheme: PropTypes.func.isRequired
 }
