@@ -4,7 +4,7 @@ import './index.css'
 
 import Nav from './components/Nav'
 import Loading from './components/Loading'
-import { ThemeProvider } from './contexts/theme'
+import { ThemeContext } from './contexts/theme'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const Popular = React.lazy(() => import('./components/Popular'))
@@ -17,7 +17,7 @@ function App() {
     setTheme(theme => (theme === 'light' ? 'dark' : 'light'))
   return (
     <Router>
-      <ThemeProvider value={theme}>
+      <ThemeContext.Provider value={theme}>
         <div className={theme}>
           <div className='container'>
             <Nav toggleTheme={toggleTheme} />
@@ -31,7 +31,7 @@ function App() {
             </React.Suspense>
           </div>
         </div>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     </Router>
   )
 }
